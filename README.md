@@ -55,7 +55,7 @@ You can apply these rules as described in the [validation section on Laravel's w
 ```php
 Validator::make(['password' => 'trustno1']
     'password' => 'has_digit|has_letter|not_a_common_password'
-)->passes();   // returns true;
+)->passes();   // returns false;
 ```
 
 # History
