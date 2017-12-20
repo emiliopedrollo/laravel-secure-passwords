@@ -1,0 +1,43 @@
+{
+  "name": "emiliopedrollo/laravel-secure-passwords",
+  "description": "Provide useful ways to ensure strong passwords via validation",
+  "keywords": [
+    "laravel", "password", "validation", "security"
+  ],
+  "homepage": "https://github.com/emiliopedrollo/secure-passwords",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Emílio B. Pedrollo",
+      "email": "emiliopedrollo@gmail.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/emiliopedrollo/secure-passwords/issues"
+  },
+  "require": {
+    "php": "^7.0",
+    "laravel/framework": "^5.5"
+  },
+  "require-dev":{
+    "phpunit/phpunit": "^6.4",
+    "laravel/laravel": "^5.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pedrollo\\SecurePasswords\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "extra":{
+    "laravel": {
+      "providers": [
+        "Pedrollo\\SecurePasswords\\SecurePasswordsServiceProvider"
+      ]
+    }
+  }
+}
