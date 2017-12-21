@@ -17,7 +17,7 @@ The provided new validations:
 
 ### Get the package
 
-```composer require emiliopedrollo/laravel-secure-passwords:"~0.1"```.
+```composer require emiliopedrollo/laravel-secure-passwords:"~0.2"```.
 
 ### Initialize the package
 
