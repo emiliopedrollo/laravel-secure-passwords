@@ -39,7 +39,7 @@ return array(
 ```
 
 ## Usage
-Now Laravel's native `Validator` is extended by four rules:
+Now Laravel's native `Validator` is extended by those rules:
 
 - has_uppercase
 - has_lowercase
