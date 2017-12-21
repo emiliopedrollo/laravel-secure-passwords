@@ -16,6 +16,6 @@ return [
         'sunshine','tigger','1989','merlin','ranger','solo','banana','chelsea','summer','1990','1991','phoenix',
         'amanda','cookie','ashley','bandit','killer','aaaaaa','pepper','jessica','zaq1zaq1','jennifer','test','hockey',
         'dallas','passwor','michelle','admin123','pussy','pass','asdf','william','soccer','london','1q2w3e','1992',
-        'biteme','maggie','querty','rangers','charlie','mertin','ginger','golfer','yankees','thunder'
+        'biteme','maggie','querty','rangers','charlie','martin','ginger','golfer','yankees','thunder'
     ]
 ];
