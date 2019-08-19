@@ -1,4 +1,5 @@
 Laravel Secure Passwords
+[![Build Status](https://travis-ci.org/emiliopedrollo/laravel-secure-passwords.svg?branch=master)](https://travis-ci.org/emiliopedrollo/laravel-secure-passwords)
 ================
 
 This package provides useful ways to ensure strong passwords via validation in Laravel 5 applications.
