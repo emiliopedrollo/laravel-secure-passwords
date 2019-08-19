@@ -16,7 +16,7 @@
     "issues": "https://github.com/emiliopedrollo/secure-passwords/issues"
   },
   "require": {
-    "php": "^7.0",
+    "php": "^7.1",
     "laravel/framework": "^5.5"
   },
   "require-dev":{
