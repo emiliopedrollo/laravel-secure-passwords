@@ -1,12 +1,14 @@
 <?php
 
-namespace Pedrollo\SecurePasswords;
+namespace Pedrollo\SecurePasswords\Tests;
 
-use Illuminate\Config\Repository;
-use Illuminate\Container\EntryNotFoundException;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Support\Facades\Validator;
+use Pedrollo\SecurePasswords\SecurePasswords;
+use Pedrollo\SecurePasswords\SecurePasswordsServiceProvider;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * Class SecurePasswordsServiceProviderTest
@@ -15,11 +17,11 @@ use Illuminate\Support\Facades\Validator;
 class SecurePasswordsServiceProviderTest extends TestCase {
 
     /**
-     * @return \Illuminate\Foundation\Application|\Symfony\Component\HttpKernel\HttpKernelInterface
+     * @return Application|HttpKernelInterface
      * @coversNothing
      */
     public function createApplication() {
-        /** @var \Illuminate\Foundation\Application $app */
+        /** @var Application $app */
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
         $app->register(SecurePasswordsServiceProvider::class);
@@ -32,12 +34,8 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::register
      */
     public function it_register(){
-        try {
-            $singleton = $this->app->get(SecurePasswords::class);
-            $this->assertInstanceOf(SecurePasswords::class,$singleton);
-        } catch (EntryNotFoundException $e) {
-            $this->throwException($e);
-        }
+        $singleton = $this->app->get(SecurePasswords::class);
+        $this->assertInstanceOf(SecurePasswords::class,$singleton);
     }
 
     /**
@@ -46,7 +44,6 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::registerUpperCaseRule
      */
     public function it_make_has_uppercase_available(){
-        /** @noinspection PhpUndefinedMethodInspection */
         $this->assertTrue(Validator::make(
             ['A'],
             ['has_uppercase']
@@ -60,7 +57,6 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::registerLowerCaseRule
      */
     public function it_make_has_lowercase_available(){
-        /** @noinspection PhpUndefinedMethodInspection */
         $this->assertTrue(Validator::make(
             ['a'],
             ['has_lowercase']
@@ -73,7 +69,6 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::registerBothCasesRule
      */
     public function it_make_has_both_cases_available(){
-        /** @noinspection PhpUndefinedMethodInspection */
         $this->assertTrue(Validator::make(
             ['Aa'],
             ['has_both_cases']
@@ -86,7 +81,6 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::registerDigitRule
      */
     public function it_make_has_digit_available(){
-        /** @noinspection PhpUndefinedMethodInspection */
         $this->assertTrue(Validator::make(
             ['1'],
             ['has_digit']
@@ -99,7 +93,6 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::registerLetterRule
      */
     public function it_make_has_letter_available(){
-        /** @noinspection PhpUndefinedMethodInspection */
         $this->assertTrue(Validator::make(
             ['a'],
             ['has_letter']
@@ -112,7 +105,6 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::registerSymbolRule
      */
     public function it_make_has_symbol_available(){
-        /** @noinspection PhpUndefinedMethodInspection */
         $this->assertTrue(Validator::make(
             ['!'],
             ['has_symbol']
@@ -125,7 +117,6 @@ class SecurePasswordsServiceProviderTest extends TestCase {
      * @covers \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::registerCommonPasswordRule
      */
     public function it_make_not_a_common_password_available(){
-        /** @noinspection PhpUndefinedMethodInspection */
         $this->assertTrue(Validator::make(
             ['not_a_common_password'],
             ['not_a_common_password']

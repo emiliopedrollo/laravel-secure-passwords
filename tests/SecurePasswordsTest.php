@@ -1,11 +1,13 @@
 <?php
 
-namespace Pedrollo\SecurePasswords\Test;
+namespace Pedrollo\SecurePasswords\Tests;
 
+use Illuminate\Foundation\Application;
 use Pedrollo\SecurePasswords\SecurePasswords;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase;
 use Pedrollo\SecurePasswords\SecurePasswordsServiceProvider;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * Class SecurePasswordsTest
@@ -15,11 +17,11 @@ use Pedrollo\SecurePasswords\SecurePasswordsServiceProvider;
 class SecurePasswordsTest extends TestCase
 {
     /**
-     * @return \Illuminate\Foundation\Application|\Symfony\Component\HttpKernel\HttpKernelInterface
+     * @return Application|HttpKernelInterface
      * @coversNothing
      */
     public function createApplication() {
-        /** @var \Illuminate\Foundation\Application $app */
+        /** @var Application $app */
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
         $app->register(SecurePasswordsServiceProvider::class);
