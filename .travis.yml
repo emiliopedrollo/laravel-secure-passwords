@@ -7,6 +7,8 @@ env:
   - LARAVEL_VERSION="~5.7.0"
   - LARAVEL_VERSION="~5.8.0"
   - LARAVEL_VERSION="^6.0"
+before_install:
+  - rm composer.lock
 install:
   - composer require laravel/framework:${LARAVEL_VERSION} laravel/laravel:${LARAVEL_VERSION}
   - composer install
