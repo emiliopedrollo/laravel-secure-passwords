@@ -4,13 +4,13 @@ php:
   - '7.3'
   - '7.4'
 env:
-  - LARAVEL_VERSION="~5.7.0"
-  - LARAVEL_VERSION="~5.8.0"
-  - LARAVEL_VERSION="^6.0"
+  - LARAVEL_VERSION="~5.7.0" PHPUNIT_VERSION="^7.5"
+  - LARAVEL_VERSION="~5.8.0" PHPUNIT_VERSION="^8.0"
+  - LARAVEL_VERSION="^6.0" PHPUNIT_VERSION="^8.0"
 before_install:
   - rm composer.lock
 install:
-  - composer require laravel/framework:${LARAVEL_VERSION} laravel/laravel:${LARAVEL_VERSION}
+  - composer require laravel/framework:${LARAVEL_VERSION} laravel/laravel:${LARAVEL_VERSION} phpunit/phpunit:${PHPUNIT_VERSION}
   - composer install
 script:
   - vendor/bin/phpunit tests/ --testdox
