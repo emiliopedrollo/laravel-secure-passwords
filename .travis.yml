@@ -2,7 +2,13 @@ language: php
 php:
   - '7.2'
   - '7.3'
+  - '7.4'
+env:
+  - LARAVEL_VERSION="~5.7.0"
+  - LARAVEL_VERSION="~5.8.0"
+  - LARAVEL_VERSION="^6.0"
 install:
+  - composer require laravel/framework:${LARAVEL_VERSION} laravel/laravel:${LARAVEL_VERSION}
   - composer install
 script:
   - vendor/bin/phpunit tests/ --testdox
