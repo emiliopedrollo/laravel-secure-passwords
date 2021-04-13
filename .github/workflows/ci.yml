@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    types: [ opened, edited, synchronize, reopened ]
+
+jobs:
+
+  # this job just provide a list of supported php versions based on composer.json to be used later on
+  provide_php_versions_json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          # this is the only place we have to use PHP to avoid the lock to bash scripting
+          php-version: 7.4
+      - uses: ramsey/composer-install@v1
+        # to see the provided output, just to be sure
+      - run: vendor/bin/easy-ci php-versions-json
+
+      # here we create the json, we need the "id:" so we can use it in "outputs" bellow
+
+      - id: output_data
+        run: echo "::set-output name=matrix::$(vendor/bin/easy-ci php-versions-json)"
+
+    # here, we save the result of this 1st phase to the "outputs"
+    outputs:
+      matrix: ${{ steps.output_data.outputs.matrix }}
+
+  phpunit:
+    needs: provide_php_versions_json
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ${{ fromJson(needs.provide_php_versions_json.outputs.matrix) }}
+        laravel-version: ['6.20.14','7.30.4','8.24.0']
+        dependency-version: ['lowest','highest']
+        exclude:
+          - php-version: '7.2'
+            laravel-version: '8.24.0'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2
+      - run:
+          composer require laravel/framework:${{ matrix.laravel-versionn }} laravel/laravel:${{ matrix.laravel-versionn }}
+      - uses: ramsey/composer-install@v1
+        with:
+          dependency-versions: ${{ matrix.dependency-version }}
+      - run:
+          vendor/bin/phpunit tests/ --testdox
