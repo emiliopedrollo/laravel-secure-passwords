@@ -22,7 +22,7 @@
     "laravel/framework": "^6.20.14|^7.30.4|^8.24.0"
   },
   "require-dev":{
-    "laravel/laravel": "^6.20.14|^7.30.4|^8.24.0",
+    "laravel/laravel": "^6.0|^7.0|^8.0",
     "phpunit/phpunit": "^8.0|^9.0",
     "symplify/easy-ci": "^9.2"
   },
