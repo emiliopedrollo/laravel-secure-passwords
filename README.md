@@ -6,7 +6,7 @@ Laravel Secure Passwords
 [![License](https://poser.pugx.org/emiliopedrollo/laravel-secure-passwords/license)](https://packagist.org/packages/emiliopedrollo/laravel-secure-passwords)
 ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/emiliopedrollo/laravel-secure-passwords)
 
-This package provides useful ways to ensure strong passwords via validation in Laravel 5 applications.
+This package provides useful ways to ensure strong passwords via validation in Laravel 6 applications.
 
 The provided new validations:
 
@@ -23,25 +23,6 @@ The provided new validations:
 ### Get the package
 
 ```composer require emiliopedrollo/laravel-secure-passwords:"~0.2"```.
-
-### Initialize the package
-
-> If you do run the package on Laravel 5.5+, you can start using the package at this point. [package auto-discovery](https://medium.com/@taylorotwell/package-auto-discovery-in-laravel-5-5-ea9e3ab20518) takes care of the magic of adding the service provider.
-
-
-If you do not run Laravel 5.5 (or higher), then add the following line under the `providers` array key in *app/config.php*:
-
-```php
-// app/config/app.php
-return array(
-    // ...
-    'providers' => array(
-        // ...
-        \Pedrollo\SecurePasswords\SecurePasswordsServiceProvider::class,
-    );
-    // ...
-);
-```
 
 ## Usage
 Now Laravel's native `Validator` is extended by those rules:

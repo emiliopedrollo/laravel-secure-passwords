@@ -3,14 +3,25 @@ php:
   - '7.2'
   - '7.3'
   - '7.4'
+  - '8.0'
 env:
-  - LARAVEL_VERSION="~5.7.0" PHPUNIT_VERSION="^7.5"
-  - LARAVEL_VERSION="~5.8.0" PHPUNIT_VERSION="^8.0"
-  - LARAVEL_VERSION="^6.0" PHPUNIT_VERSION="^8.0"
+  - LARAVEL_VERSION="^6.20.14"
+  - LARAVEL_VERSION="^7.30.4"
+  - LARAVEL_VERSION="^8.24.0"
+  - LARAVEL_VERSION="^6.20.14" COMPOSER_OPTIONS="--prefer-lowest"
+  - LARAVEL_VERSION="^7.30.4" COMPOSER_OPTIONS="--prefer-lowest"
+  - LARAVEL_VERSION="^8.24.0" COMPOSER_OPTIONS="--prefer-lowest"
+jobs:
+  exclude:
+    - php: '7.2'
+      env: LARAVEL_VERSION="^8.0"
+    - php: '7.2'
+      env: LARAVEL_VERSION="^8.0" COMPOSER_OPTIONS="--prefer-lowest"
 before_install:
   - rm composer.lock
 install:
-  - composer require laravel/framework:${LARAVEL_VERSION} laravel/laravel:${LARAVEL_VERSION} phpunit/phpunit:${PHPUNIT_VERSION}
+  - composer require laravel/framework:${LARAVEL_VERSION} laravel/laravel:${LARAVEL_VERSION}
+  - composer update "${COMPOSER_OPTIONS[@]}"
   - composer install
 script:
   - vendor/bin/phpunit tests/ --testdox
