@@ -51,10 +51,10 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php-version }}
           tools: composer:v2
       - run:
-          composer require laravel/framework:${{ matrix.laravel-versionn }} laravel/laravel:${{ matrix.laravel-versionn }}
+          composer require laravel/framework:${{ matrix.laravel-version }} laravel/laravel:${{ matrix.laravel-version }}
       - uses: ramsey/composer-install@v1
         with:
           dependency-versions: ${{ matrix.dependency-version }}
