@@ -20,6 +20,7 @@ jobs:
           php-version: 7.4
       - uses: ramsey/composer-install@v1
         # to see the provided output, just to be sure
+      - run: composer require symplify/easy-ci
       - run: vendor/bin/easy-ci php-versions-json
 
       # here we create the json, we need the "id:" so we can use it in "outputs" bellow

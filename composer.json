@@ -23,8 +23,7 @@
   },
   "require-dev":{
     "laravel/laravel": "^6.0|^7.0|^8.0",
-    "phpunit/phpunit": "^8.0|^9.0",
-    "symplify/easy-ci": "^9.2"
+    "phpunit/phpunit": "^8.0|^9.0"
   },
   "autoload": {
     "psr-4": {
